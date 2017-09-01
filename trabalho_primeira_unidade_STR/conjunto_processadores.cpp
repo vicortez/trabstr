@@ -7,101 +7,122 @@ int Conjunto_Processadores::getTamanho() const
     return tamanho;
 }
 //Falta agora é calcular para todas as cepus, esse método é só pra uma
-float Conjunto_Processadores::usoCPU(Processador proc)
+void Conjunto_Processadores::usoCPU(Processador proc, int indice)
 {
     float work1, work2;
     float tempo1, tempo2;
-    float cpu_usage;
+    while(1){
+        configProcessadores(proc, indice);
+        work1 = Processador::cpu_work_time(proc);
+        tempo1 = Processador::cpu_total_time(proc);
+        sleep(2);
+        configProcessadores(proc, indice);
+        work2 = Processador::cpu_work_time(proc);
+        tempo2 = Processador::cpu_total_time(proc);
+        proc.setCpu_usage((work2 - work1)/(tempo2 - tempo1) * 100);
 
-    //Conjunto_Processadores::configProcessadores(proc);
-    work1 = Processador::cpu_work_time(proc);
-    tempo1 = Processador::cpu_total_time(proc);
-    sleep(2);
-    work2 = Processador::cpu_work_time(proc);
-    tempo2 = Processador::cpu_total_time(proc);
-    proc.setCpu_usage((work2 - work1)/(tempo2 - tempo1) * 100);
-    cpu_usage = proc.getCpu_usage();
-    return cpu_usage;
-
-}
-
-Conjunto_Processadores::Conjunto_Processadores()
-{
-    for(int i = 0; i < tamanho; i++){
-        conj_procs.push_back(Processador());
-        work.push_back(0.0);
-        tempo.push_back(0.0);
     }
+
 }
 
-void Conjunto_Processadores::configProcessadores(Conjunto_Processadores vetor)
+//Inicializa o ponteiro para iniciar a thread que vai calcular o uso da CPU
+//de cada core
+void Conjunto_Processadores::receiveFunction(Conjunto_Processadores *pointer, Processador p, int indice)
+{
+    pointer->usoCPU(p, indice);
+}
+
+//Inicializa o ponteiro pra inicializar a thread que vai atualizar o arquivo
+//Com os dados da cpu
+void Conjunto_Processadores::receiveFunction2(Conjunto_Processadores *pointer)
+{
+    pointer->atualiza_arquivo();;
+}
+
+//Atualiza arquivo de leitura a cada 1 segundo para ser lido pelas threads que atualizam a cada 2 segundos
+void Conjunto_Processadores::atualiza_arquivo()
 {
     while(1){
-        unsigned int cont = 0, i;
-        unsigned int nproc = this->getTamanho();
+        system("cat /proc/stat > meusProcessadores.txt");
+        sleep(1);
+    }
+}
+//Fazer uma função que atualize o arquivo /proc/stat independente da leitura dele
+Conjunto_Processadores::Conjunto_Processadores()
+{
+    thread atualiza_texto();
+    Conjunto_Processadores *pointer = this;
+    for(int i = 0; i < tamanho; i++){
+        conj_procs.push_back(Processador());
+        thread atualiza(&receiveFunction, pointer, conj_procs.at(i), i);
+        atualiza.join();
+    }
+}
+//Atualiza os dados do processador a ser analisado o tempo
+void Conjunto_Processadores::configProcessadores(Processador cpu, int indice)
+{
+
+        unsigned int i = 0;
         ifstream meusProcessadores;
         string processadores;
         string buffer;
         Processador p;
 
-        system("cat /proc/stat > meusProcessadores.txt");
         meusProcessadores.open("meusProcessadores.txt");
-        getline(meusProcessadores, processadores);
-
-        while(cont < nproc){
-            i = 0;
+        getline(meusProcessadores, processadores);//Lê o cabeçalho do arquivo
+        for(int j = 0; j < indice; j++){//Pula as linhas do arquivo para chegar a linha referenta à cpu sendo analisada
             getline(meusProcessadores, processadores);
-            stringstream ss(processadores);
-            while(ss >> buffer){
-                if(i == 0){
-                    vetor.conj_procs.at(cont).setCpu(buffer);
-                    i++;
-                    continue;
-                }
-                else if(i == 1){
-                    vetor.conj_procs.at(cont).setUser(stof(buffer));
-                    i++;
-                    continue;
-                }
-                else if(i == 2){
-                    vetor.conj_procs.at(cont).setNice(stof(buffer));
-                    i++;
-                    continue;
-                }
-                else if(i == 3){
-                    vetor.conj_procs.at(cont).setSystem(stof(buffer));
-                    i++;
-                    continue;
-                }
-                else if(i == 4){
-                    vetor.conj_procs.at(cont).setIdle(stof(buffer));
-                    i++;
-                    continue;
-                }
-                else if(i == 5){
-                    vetor.conj_procs.at(cont).setIowait(stof(buffer));
-                    i++;
-                    continue;
-                }
-                else if(i == 6){
-                    vetor.conj_procs.at(cont).setIrq(stof(buffer));
-                    i++;
-                    continue;
-                }
-                else if(i == 7){
-                    vetor.conj_procs.at(cont).setSoftirq(stof(buffer));
-                    i++;
-                    continue;
-                }
-                else if(i == 8){
-                    vetor.conj_procs.at(cont).setSteal(stof(buffer));
-                    break;
-                }
-                else
-                    break;
-            }
-            cont++;
         }
-    }
+        //Lê a linha do processador a ser analisado
+        getline(meusProcessadores, processadores);
+        stringstream ss(processadores);
+        while(ss >> buffer){
+            if(i == 0){
+                cpu.setCpu(buffer);
+                i++;
+                continue;
+            }
+            else if(i == 1){
+                cpu.setUser(stof(buffer));
+                i++;
+                continue;
+            }
+            else if(i == 2){
+                cpu.setNice(stof(buffer));
+                i++;
+                continue;
+            }
+            else if(i == 3){
+                cpu.setSystem(stof(buffer));
+                i++;
+                continue;
+            }
+            else if(i == 4){
+                cpu.setIdle(stof(buffer));
+                i++;
+                continue;
+            }
+            else if(i == 5){
+                cpu.setIowait(stof(buffer));
+                i++;
+                continue;
+            }
+            else if(i == 6){
+                cpu.setIrq(stof(buffer));
+                i++;
+                continue;
+            }
+            else if(i == 7){
+                cpu.setSoftirq(stof(buffer));
+                i++;
+                continue;
+            }
+            else if(i == 8){
+                cpu.setSteal(stof(buffer));
+                break;
+            }
+            else
+                break;
+        }
 }
 

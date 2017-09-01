@@ -7,6 +7,7 @@
 #include <sstream>
 #include <fstream>
 #include <QThread>
+#include <thread>
 
 using namespace std;
 
@@ -16,12 +17,14 @@ private:
     int tamanho = sysconf(_SC_NPROCESSORS_ONLN);
 public:
     vector<Processador> conj_procs;
-    vector<float> work;
-    vector<float> tempo;
     Conjunto_Processadores();
-    void configProcessadores(Conjunto_Processadores vetor);
+    static void configProcessadores(Processador cpu, int indice);
     int getTamanho() const;
-    static float usoCPU(Processador proc);
+    static void usoCPU(Processador proc, int indice);
+    void usoGeral_CPU();
+    static void receiveFunction(Conjunto_Processadores *pointer, Processador p, int indice);
+    static void receiveFunction2(Conjunto_Processadores *pointer);
+    void atualiza_arquivo();
 };
 
 #endif // CONJUNTO_PROCESSADORES_H
