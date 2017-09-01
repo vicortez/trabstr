@@ -28,8 +28,12 @@ struct conjunto_processadores
 	int nproc = sysconf(_SC_NPROCESSORS_ONLN);
 };
 
+//gfgfgfgfgfg
+
+
 //posporopr
 //isso é um teste
+
 
 void setProcessadores(processador &my_rank, conjunto_processadores &vetor){
 	unsigned int cont = 0, i;
