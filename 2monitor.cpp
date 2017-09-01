@@ -30,6 +30,7 @@ struct conjunto_processadores
 
 //posporopr
 //isso é um teste
+///asaasasas
 
 void setProcessadores(processador &my_rank, conjunto_processadores &vetor){
 	unsigned int cont = 0, i;
