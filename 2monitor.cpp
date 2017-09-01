@@ -27,7 +27,7 @@ struct conjunto_processadores
 	vector<processador> conj_procs;
 	int nproc = sysconf(_SC_NPROCESSORS_ONLN);
 };
-
+//gfgfgfgfgfg
 void setProcessadores(processador &my_rank, conjunto_processadores &vetor){
 	unsigned int cont = 0, i;
 	unsigned int nproc = sysconf(_SC_NPROCESSORS_ONLN);
