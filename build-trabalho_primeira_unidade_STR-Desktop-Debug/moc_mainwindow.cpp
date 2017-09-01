@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../trabalho_primeira_unidade_STR/mainwindow.h"
+#include "../../GIT/Projeto_STR_Unidade1/trabalho_primeira_unidade_STR/mainwindow.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
