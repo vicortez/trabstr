@@ -1,0 +1,11 @@
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+paulovi+ 13657  0.0  0.0  23044  5616 pts/9    Ss   12:15   0:00 bash
+paulovi+ 13844  0.0  0.0  13280  1564 pts/9    S+   12:23   0:00  \_ ./monitor
+paulovi+ 13845  0.0  0.0   4508   716 pts/9    S+   12:23   0:00      \_ sh -c ps -auf > meusProcessos.txt
+paulovi+ 13846  0.0  0.0  37404  3368 pts/9    R+   12:23   0:00          \_ ps -auf
+paulovi+ 13301  0.0  0.0  23044  5612 pts/0    Ss+  12:05   0:00 bash
+root      1084  5.7  1.8 632068 152392 tty7    Ssl+ 08:23  13:43 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+root      6710  0.0  0.0  15948  1880 tty5     Ss+  09:20   0:00 /sbin/agetty --noclear tty5 linux
+root      6707  0.0  0.0  15948  1800 tty6     Ss+  09:20   0:00 /sbin/agetty --noclear tty6 linux
+root      6618  0.0  0.0  15948  1748 tty2     Ss+  09:18   0:00 /sbin/agetty --noclear tty2 linux
+root      1207  0.0  0.0  15948  1828 tty1     Ss+  08:23   0:00 /sbin/agetty --noclear tty1 linux
