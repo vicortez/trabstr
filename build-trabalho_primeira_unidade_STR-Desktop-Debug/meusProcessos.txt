@@ -3,7 +3,7 @@ root         1  0.0  0.0 119664  5844 ?        Ss   16:10   0:00 /sbin/init spla
 root         2  0.0  0.0      0     0 ?        S    16:10   0:00 [kthreadd]
 root         3  0.0  0.0      0     0 ?        S    16:10   0:00 [ksoftirqd/0]
 root         5  0.0  0.0      0     0 ?        S<   16:10   0:00 [kworker/0:0H]
-root         7  0.0  0.0      0     0 ?        S    16:10   0:00 [rcu_sched]
+root         7  0.0  0.0      0     0 ?        S    16:10   0:01 [rcu_sched]
 root         8  0.0  0.0      0     0 ?        S    16:10   0:00 [rcu_bh]
 root         9  0.0  0.0      0     0 ?        S    16:10   0:00 [migration/0]
 root        10  0.0  0.0      0     0 ?        S    16:10   0:00 [watchdog/0]
@@ -14,7 +14,6 @@ root        15  0.0  0.0      0     0 ?        S<   16:10   0:00 [kworker/1:0H]
 root        16  0.0  0.0      0     0 ?        S    16:10   0:00 [watchdog/2]
 root        17  0.0  0.0      0     0 ?        S    16:10   0:00 [migration/2]
 root        18  0.0  0.0      0     0 ?        S    16:10   0:00 [ksoftirqd/2]
-root        19  0.0  0.0      0     0 ?        S    16:10   0:00 [kworker/2:0]
 root        20  0.0  0.0      0     0 ?        S<   16:10   0:00 [kworker/2:0H]
 root        21  0.0  0.0      0     0 ?        S    16:10   0:00 [watchdog/3]
 root        22  0.0  0.0      0     0 ?        S    16:10   0:00 [migration/3]
@@ -111,7 +110,6 @@ root       280  0.0  0.0      0     0 ?        S    16:10   0:00 [kauditd]
 root       282  0.0  0.0  35380  4084 ?        Ss   16:10   0:00 /lib/systemd/systemd-journald
 root       294  0.0  0.0      0     0 ?        S<   16:10   0:00 [kworker/5:1H]
 root       304  0.0  0.0 102968  1700 ?        Ss   16:10   0:00 /sbin/lvmetad -f
-root       309  0.0  0.0      0     0 ?        S    16:10   0:00 [kworker/3:2]
 root       317  0.0  0.0  46248  5416 ?        Ss   16:10   0:00 /lib/systemd/systemd-udevd
 root       408  0.0  0.0      0     0 ?        S    16:10   0:00 [irq/27-mei_me]
 root       410  0.0  0.0      0     0 ?        S<   16:10   0:00 [edac-poller]
@@ -141,7 +139,7 @@ root       940  0.0  0.0      0     0 ?        S<   16:10   0:00 [kworker/3:1H]
 root       941  0.0  0.0  19472   252 ?        Ss   16:10   0:00 /usr/sbin/irqbalance --pid=/var/run/irqbalance.pid
 root       942  0.0  0.1 297404 10688 ?        Ssl  16:10   0:00 /usr/lib/policykit-1/polkitd --no-debug
 root       966  0.0  0.0  65520  5340 ?        Ss   16:10   0:00 /usr/sbin/sshd -D
-root       976  3.3  1.2 566016 98768 tty7     Ssl+ 16:10   0:59 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+root       976  4.0  1.4 581448 115156 tty7    Ssl+ 16:10   3:36 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
 root       977  0.0  0.0  15944  1792 tty1     Ss+  16:10   0:00 /sbin/agetty --noclear tty1 linux
 root      1021  0.0  0.0  16124  3768 ?        S    16:10   0:00 /sbin/dhclient -d -q -sf /usr/lib/NetworkManager/nm-dhcp-helper -pf /var/run/dhclient-enp3s0.pid -lf /var/lib/NetworkManager/dhclient-c88232a7-f8fa-3126-9f4c-01c91bfa4ca9-enp3s0.lease -cf /var/lib/NetworkManager/dhclient-enp3s0.conf enp3s0
 nobody    1031  0.0  0.0  52872  4180 ?        S    16:10   0:00 /usr/sbin/dnsmasq --no-resolv --keep-in-foreground --no-hosts --bind-interfaces --pid-file=/var/run/NetworkManager/dnsmasq.pid --listen-address=127.0.1.1 --cache-size=0 --conf-file=/dev/null --proxy-dnssec --enable-dbus=org.freedesktop.NetworkManager.dnsmasq --conf-dir=/etc/NetworkManager/dnsmasq.d
@@ -150,37 +148,37 @@ victor    1200  0.0  0.0  45240  4632 ?        Ss   16:10   0:00 /lib/systemd/sy
 victor    1201  0.0  0.0  63280  1936 ?        S    16:10   0:00 (sd-pam)
 victor    1205  0.0  0.0  46484  4768 ?        Ss   16:10   0:00 /sbin/upstart --user
 victor    1291  0.0  0.0  32864   284 ?        S    16:10   0:00 upstart-udev-bridge --daemon --user
-victor    1297  0.0  0.0  43916  4296 ?        Ss   16:10   0:01 dbus-daemon --fork --session --address=unix:abstract=/tmp/dbus-CTE98Awtz9
+victor    1297  0.0  0.0  43916  4312 ?        Ss   16:10   0:01 dbus-daemon --fork --session --address=unix:abstract=/tmp/dbus-CTE98Awtz9
 victor    1309  0.0  0.1  86356 10056 ?        Ss   16:10   0:00 /usr/lib/x86_64-linux-gnu/hud/window-stack-bridge
 victor    1335  0.0  0.0  32800   316 ?        S    16:10   0:00 upstart-dbus-bridge --daemon --session --user --bus-name session
 victor    1337  0.0  0.0  32800   312 ?        S    16:10   0:00 upstart-dbus-bridge --daemon --system --user --bus-name system
 victor    1342  0.0  0.0  41292  2148 ?        S    16:10   0:00 upstart-file-bridge --daemon --user
-victor    1344  0.2  0.1 358588  8972 ?        Ssl  16:10   0:04 /usr/bin/ibus-daemon --daemonize --xim
+victor    1344  0.2  0.1 359364  9620 ?        Ssl  16:10   0:12 /usr/bin/ibus-daemon --daemonize --xim
 victor    1357  0.0  0.0 274536  6392 ?        Sl   16:10   0:00 /usr/lib/gvfs/gvfsd
 victor    1362  0.0  0.1 419960  9440 ?        Sl   16:10   0:00 /usr/lib/gvfs/gvfsd-fuse /run/user/1000/gvfs -f -o big_writes
 victor    1364  0.0  0.0 277552  7752 ?        Sl   16:10   0:00 /usr/lib/ibus/ibus-dconf
-victor    1365  0.0  0.3 479760 29892 ?        Sl   16:10   0:01 /usr/lib/ibus/ibus-ui-gtk3
+victor    1365  0.0  0.3 479760 29892 ?        Sl   16:10   0:04 /usr/lib/ibus/ibus-ui-gtk3
 victor    1367  0.0  0.2 430136 20708 ?        Sl   16:10   0:00 /usr/lib/ibus/ibus-x11 --kill-daemon
 victor    1369  0.0  0.1 205224  8816 ?        SLl  16:10   0:00 gnome-keyring-daemon --start --components ssh
 victor    1370  0.0  0.0 166544   756 ?        Ss   16:10   0:00 gpg-agent --homedir /home/victor/.gnupg --use-standard-socket --daemon
 victor    1404  0.0  0.4 929972 34024 ?        Ssl  16:10   0:00 /usr/lib/unity-settings-daemon/unity-settings-daemon
-victor    1405  0.0  0.3 526008 27704 ?        Ssl  16:10   0:01 /usr/lib/x86_64-linux-gnu/bamf/bamfdaemon
-victor    1409  1.6  1.5 1655332 129660 ?      Ssl  16:10   0:29 compiz
+victor    1405  0.0  0.3 525452 27280 ?        Ssl  16:10   0:04 /usr/lib/x86_64-linux-gnu/bamf/bamfdaemon
+victor    1409  1.7  1.5 1655664 130008 ?      Ssl  16:10   1:32 compiz
 victor    1413  0.0  0.1 353736 10100 ?        Ssl  16:10   0:00 /usr/lib/at-spi2-core/at-spi-bus-launcher --launch-immediately
 victor    1414  0.0  0.1 642760 15344 ?        Ssl  16:10   0:00 /usr/lib/gnome-session/gnome-session-binary --session=ubuntu
-victor    1417  0.1  0.4 646676 39464 ?        Ssl  16:10   0:02 /usr/lib/x86_64-linux-gnu/unity/unity-panel-service
-victor    1421  0.0  0.5 654420 41368 ?        Ssl  16:10   0:01 /usr/lib/x86_64-linux-gnu/hud/hud-service
+victor    1417  0.0  0.4 646676 39540 ?        Ssl  16:10   0:05 /usr/lib/x86_64-linux-gnu/unity/unity-panel-service
+victor    1421  0.0  0.5 654628 41684 ?        Ssl  16:10   0:02 /usr/lib/x86_64-linux-gnu/hud/hud-service
 victor    1426  0.0  0.0  43028  4128 ?        S    16:10   0:00 /usr/bin/dbus-daemon --config-file=/etc/at-spi2/accessibility.conf --nofork --print-address 3
-victor    1465  0.0  0.0 206880  6308 ?        Sl   16:10   0:00 /usr/lib/at-spi2-core/at-spi2-registryd --use-gnome-session
-victor    1483  0.0  0.0 178664  4924 ?        Sl   16:10   0:00 /usr/lib/dconf/dconf-service
+victor    1465  0.0  0.0 206880  6308 ?        Sl   16:10   0:01 /usr/lib/at-spi2-core/at-spi2-registryd --use-gnome-session
+victor    1483  0.0  0.0 178664  4928 ?        Sl   16:10   0:00 /usr/lib/dconf/dconf-service
 root      1503  0.0  0.1 347232 11904 ?        Ssl  16:10   0:00 /usr/lib/upower/upowerd
 victor    1509  0.0  0.1 500748 12220 ?        S<l  16:10   0:00 /usr/bin/pulseaudio --start --log-target=syslog
 rtkit     1515  0.0  0.0 183544  3080 ?        SNsl 16:10   0:00 /usr/lib/rtkit/rtkit-daemon
-victor    1549  0.0  0.0 201688  7724 ?        Sl   16:10   0:00 /usr/lib/ibus/ibus-engine-simple
+victor    1549  0.0  0.0 201688  7724 ?        Sl   16:10   0:02 /usr/lib/ibus/ibus-engine-simple
 victor    1551  0.0  0.1 360204  8576 ?        Ssl  16:10   0:00 /usr/lib/x86_64-linux-gnu/indicator-messages/indicator-messages-service
 victor    1552  0.0  0.0 349056  7684 ?        Ssl  16:10   0:00 /usr/lib/x86_64-linux-gnu/indicator-bluetooth/indicator-bluetooth-service
 victor    1553  0.0  0.1 360704 10908 ?        Ssl  16:10   0:00 /usr/lib/x86_64-linux-gnu/indicator-power/indicator-power-service
-victor    1554  0.0  0.2 1305328 19360 ?       Ssl  16:10   0:00 /usr/lib/x86_64-linux-gnu/indicator-datetime/indicator-datetime-service
+victor    1554  0.0  0.2 1305328 19364 ?       Ssl  16:10   0:00 /usr/lib/x86_64-linux-gnu/indicator-datetime/indicator-datetime-service
 victor    1555  0.0  0.3 716896 27416 ?        Ssl  16:10   0:00 /usr/lib/x86_64-linux-gnu/indicator-keyboard/indicator-keyboard-service --use-gtk
 victor    1558  0.0  0.1 675840 11996 ?        Ssl  16:10   0:00 /usr/lib/x86_64-linux-gnu/indicator-sound/indicator-sound-service
 victor    1559  0.0  0.2 549812 23784 ?        Ssl  16:10   0:00 /usr/lib/x86_64-linux-gnu/indicator-printers/indicator-printers-service
@@ -188,28 +186,28 @@ victor    1562  0.0  0.1 636332  8536 ?        Ssl  16:10   0:00 /usr/lib/x86_64
 victor    1564  0.0  0.1 403152 13180 ?        Ssl  16:10   0:00 /usr/lib/x86_64-linux-gnu/indicator-application/indicator-application-service
 victor    1603  0.0  0.2 577048 23832 ?        Sl   16:10   0:00 /usr/lib/unity-settings-daemon/unity-fallback-mount-helper
 victor    1604  0.0  0.4 591916 33556 ?        Sl   16:10   0:00 nm-applet
-victor    1608  0.3  0.7 1451808 57612 ?       Sl   16:10   0:06 nautilus -n
+victor    1608  0.1  0.7 1452240 58168 ?       Sl   16:10   0:07 nautilus -n
 victor    1609  0.0  0.2 431872 20912 ?        Sl   16:10   0:00 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 victor    1610  0.0  0.0   4508   720 ?        S    16:10   0:00 /bin/sh ./bin//jetbrains-toolbox --minimize
 victor    1616  0.0  0.1 296384 11648 ?        Sl   16:10   0:00 /usr/lib/gvfs/gvfs-udisks2-volume-monitor
 victor    1619  0.0  0.0 322260  3176 ?        Ssl  16:10   0:00 /home/victor/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox --minimize
-victor    1647  0.0  1.0 1675260 89300 ?       Sl   16:10   0:00 share/jetbrains-toolbox/jetbrains-toolbox --disable-gpu --minimize
+victor    1647  0.0  1.2 1675260 99896 ?       Sl   16:10   0:01 share/jetbrains-toolbox/jetbrains-toolbox --disable-gpu --minimize
 colord    1649  0.0  0.1 313604 12844 ?        Ssl  16:10   0:00 /usr/lib/colord/colord
-root      1655  0.0  0.1 382788 12272 ?        Ssl  16:10   0:00 /usr/lib/udisks2/udisksd --no-debug
+root      1655  0.0  0.1 382788 12316 ?        Ssl  16:10   0:02 /usr/lib/udisks2/udisksd --no-debug
 victor    1688  0.0  0.0 257544  6288 ?        Sl   16:11   0:00 /usr/lib/gvfs/gvfs-goa-volume-monitor
-victor    1691  0.0  0.3 630720 25460 ?        Sl   16:11   0:00 /usr/lib/evolution/evolution-source-registry
+victor    1691  0.0  0.3 1245132 25716 ?       Sl   16:11   0:00 /usr/lib/evolution/evolution-source-registry
 victor    1698  0.0  0.0 271856  5924 ?        Sl   16:11   0:00 /usr/lib/gvfs/gvfs-gphoto2-volume-monitor
 victor    1711  0.0  0.0 259532  4412 ?        Sl   16:11   0:00 /usr/lib/gvfs/gvfs-mtp-volume-monitor
 root      1714  0.0  0.4 635252 35172 ?        Sl   16:11   0:00 /usr/lib/x86_64-linux-gnu/fwupd/fwupd
 victor    1721  0.0  0.1 403616 10996 ?        Sl   16:11   0:00 /usr/lib/gvfs/gvfs-afc-volume-monitor
-victor    1734  0.0  0.1 363676  8672 ?        Sl   16:11   0:00 /usr/lib/gvfs/gvfsd-trash --spawner :1.3 /org/gtk/gvfs/exec_spaw/0
+victor    1734  0.0  0.1 363676  8692 ?        Sl   16:11   0:00 /usr/lib/gvfs/gvfsd-trash --spawner :1.3 /org/gtk/gvfs/exec_spaw/0
 victor    1742  0.0  0.7 869872 60516 ?        Sl   16:11   0:00 /usr/lib/evolution/evolution-calendar-factory
 victor    1762  0.0  0.0 186056  5396 ?        Sl   16:11   0:00 /usr/lib/gvfs/gvfsd-metadata
 victor    1792  0.0  0.6 888356 53372 ?        Sl   16:11   0:00 /usr/lib/evolution/evolution-calendar-factory-subprocess --factory contacts --bus-name org.gnome.evolution.dataserver.Subprocess.Backend.Calendarx1742x2 --own-path /org/gnome/evolution/dataserver/Subprocess/Backend/Calendar/1742/2
 victor    1803  0.0  0.2 697304 21488 ?        Sl   16:11   0:00 /usr/lib/evolution/evolution-addressbook-factory
 victor    1805  0.0  0.6 1069212 54316 ?       Sl   16:11   0:00 /usr/lib/evolution/evolution-calendar-factory-subprocess --factory local --bus-name org.gnome.evolution.dataserver.Subprocess.Backend.Calendarx1742x3 --own-path /org/gnome/evolution/dataserver/Subprocess/Backend/Calendar/1742/3
 victor    1823  0.0  0.2 772776 20940 ?        Sl   16:11   0:00 /usr/lib/evolution/evolution-addressbook-factory-subprocess --factory local --bus-name org.gnome.evolution.dataserver.Subprocess.Backend.AddressBookx1803x2 --own-path /org/gnome/evolution/dataserver/Subprocess/Backend/AddressBook/1803/2
-victor    1959  0.0  0.2 555476 18612 ?        Sl   16:11   0:00 zeitgeist-datahub
+victor    1959  0.0  0.2 555516 18892 ?        Sl   16:11   0:00 zeitgeist-datahub
 victor    1966  0.0  0.0   4508   792 ?        S    16:11   0:00 /bin/sh -c /usr/lib/x86_64-linux-gnu/zeitgeist/zeitgeist-maybe-vacuum; /usr/bin/zeitgeist-daemon
 victor    1970  0.0  0.1 423428 11224 ?        Sl   16:11   0:00 /usr/bin/zeitgeist-daemon
 victor    1977  0.0  0.1 321416 15016 ?        Sl   16:11   0:00 /usr/lib/x86_64-linux-gnu/zeitgeist-fts
@@ -217,21 +215,23 @@ victor    2052  0.0  0.3 526288 26172 ?        Sl   16:11   0:00 update-notifier
 victor    2075  0.0  0.1 441308 10612 ?        Sl   16:12   0:00 /usr/lib/x86_64-linux-gnu/deja-dup/deja-dup-monitor
 root      2225  0.0  0.0      0     0 ?        S    16:15   0:00 [kworker/4:2]
 root      2335  0.0  0.0      0     0 ?        S    16:15   0:00 [kworker/2:1]
-root      2336  0.0  0.0      0     0 ?        S    16:16   0:00 [kworker/u16:1]
 root      2350  0.0  0.0      0     0 ?        S    16:17   0:00 [kworker/3:0]
-victor    2376  0.0  0.4 667744 37952 ?        Sl   16:20   0:00 /usr/lib/gnome-terminal/gnome-terminal-server
-victor    2383  0.0  0.0  22572  4940 pts/1    Ss+  16:20   0:00 bash
-victor    2403  0.0  0.1 437808 10688 ?        Sl   16:20   0:00 /usr/lib/gvfs/gvfsd-network --spawner :1.3 /org/gtk/gvfs/exec_spaw/2
+victor    2403  0.0  0.1 437808 10692 ?        Sl   16:20   0:00 /usr/lib/gvfs/gvfsd-network --spawner :1.3 /org/gtk/gvfs/exec_spaw/2
 victor    2428  0.0  0.0 361724  7036 ?        Sl   16:20   0:00 /usr/lib/gvfs/gvfsd-dnssd --spawner :1.3 /org/gtk/gvfs/exec_spaw/5
-victor    2436  9.2  4.8 2967468 394500 ?      Sl   16:20   1:49 qtcreator
+victor    2436  7.8  5.5 2994032 454212 ?      Sl   16:20   6:14 qtcreator
 victor    2453  0.0  0.0  61176  5412 ?        S    16:20   0:00 /usr/lib/x86_64-linux-gnu/gconf/gconfd-2
 root      2481  0.0  0.0      0     0 ?        S    16:20   0:00 [kworker/7:0]
 root      2763  0.0  0.0      0     0 ?        S    16:25   0:00 [kworker/0:2]
-root      2764  0.0  0.0      0     0 ?        S    16:25   0:00 [kworker/u16:3]
-root      2947  0.0  0.0      0     0 ?        S    16:34   0:00 [kworker/u16:2]
-victor    2984 17.2  7.0 2732760 571304 ?      Sl   16:37   0:30 /usr/lib/firefox/firefox
-victor    3141  0.2  0.3 449540 27696 ?        Sl   16:37   0:00 /usr/lib/x86_64-linux-gnu/notify-osd
-victor    3180  0.2  0.7 940572 63616 ?        Sl   16:39   0:00 /home/victor/UFRN/c-c++/Gerenciador-de-Tarefas/build-trabalho_primeira_unidade_STR-Desktop-Debug/trabalho_primeira_unidade_STR
-victor    3281  0.0  0.0  22572  4976 pts/18   Ss+  16:39   0:00 bash
-victor    3387  0.0  0.0   4508   720 ?        S    16:40   0:00 sh -c ps -aux > meusProcessos.txt
-victor    3388  0.0  0.0  37368  3316 ?        R    16:40   0:00 ps -aux
+victor    2984  9.8 12.6 3502096 1025364 ?     Sl   16:37   6:11 /usr/lib/firefox/firefox
+victor    3141  0.0  0.3 449668 27852 ?        Sl   16:37   0:01 /usr/lib/x86_64-linux-gnu/notify-osd
+root      3498  0.0  0.0      0     0 ?        S    16:42   0:01 [kworker/u16:0]
+victor    3923  0.1  0.4 668192 39300 ?        Sl   17:01   0:02 /usr/lib/gnome-terminal/gnome-terminal-server
+victor    3930  0.0  0.0  22652  4968 pts/1    Ss+  17:01   0:00 bash
+root      3993  0.0  0.0      0     0 ?        S    17:05   0:01 [kworker/u16:1]
+root      4093  0.0  0.0      0     0 ?        S    17:09   0:00 [kworker/2:2]
+root      4122  0.0  0.0      0     0 ?        S    17:10   0:00 [kworker/3:1]
+root      4666  0.0  0.0      0     0 ?        S    17:30   0:00 [kworker/u16:2]
+victor    4705  0.2  0.8 955044 70644 ?        Sl   17:34   0:00 /home/victor/UFRN/c-c++/Gerenciador-de-Tarefas/build-trabalho_primeira_unidade_STR-Desktop-Debug/trabalho_primeira_unidade_STR
+victor    4964  0.0  0.7 875036 63044 ?        Sl   17:40   0:00 /home/victor/UFRN/c-c++/Gerenciador-de-Tarefas/build-trabalho_primeira_unidade_STR-Desktop-Debug/trabalho_primeira_unidade_STR
+victor    4980  0.0  0.0   4508   744 ?        S    17:40   0:00 sh -c ps -aux > meusProcessos.txt
+victor    4981  0.0  0.0  37368  3352 ?        R    17:40   0:00 ps -aux

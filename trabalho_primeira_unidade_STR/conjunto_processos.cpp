@@ -20,20 +20,18 @@ void Conjunto_Processos::atualizarDados()
 {
 
     Conjunto_Processos* pointer = this;
-    thread atualiza(&Conjunto_Processos::receiveFunction, pointer);
+    thread atualiza(&Conjunto_Processos::lerArquivo, pointer);
     atualiza.join();
 }
 
 
 void Conjunto_Processos::lerArquivo()
 {
-    while(1){
 
         unsigned int i;
         ifstream  meusProcessos;//ler arquivo de texto
         string processos; //texto lido do arquivo de texto
         string buffer; // buffer para separar cada linha do texto em um elemento
-        vector<Processo> programas; //vector que vai receber os objetos processos
         Processo my_rank; // Processo atual
         system("ps -aux > meusProcessos.txt");
         meusProcessos.open("meusProcessos.txt");
@@ -83,7 +81,6 @@ void Conjunto_Processos::lerArquivo()
         meusProcessos.close();
         QThread::sleep(2);
     }
-}
 
 void Conjunto_Processos::receiveFunction(Conjunto_Processos *pointer)
 {

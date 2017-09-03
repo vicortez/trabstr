@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "iostream"
 #include "conjunto_processos.h"
+#include <string>
 
 #include <QStandardItem>
 
@@ -9,8 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    QTableView *processTable = ui->tableView;
-    QList<QStandardItem *> programsList;
+    Processo* currentProcess = new Processo();
+    QTableView* processTable = ui->tableView;
+    //QList<QStandardItem *> currentProcessList;
     QStandardItemModel* model = new QStandardItemModel(this);
 
     ui->setupUi(this);
@@ -24,19 +26,36 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //processTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    programsList.append(new QStandardItem("Column 1 Text"));
-    programsList.append(new QStandardItem("Column 2 Text"));
-    programsList.append(new QStandardItem("Column 3 Text"));
+    //currentProcessList.append(new QStandardItem("Column 1 Text"));
+    //currentProcessList.append(new QStandardItem("Column 2 Text"));
+   //currentProcessList.append(new QStandardItem("Column 3 Text"));
 
-    model->appendRow(programsList);
-    //Conjunto_Processos* conjuntoProcessos = new Conjunto_Processos();
-    //std::cout << conjuntoProcessos;
+    //model->appendRow(currentProcessList);
+    Conjunto_Processos* conjuntoProcessos = new Conjunto_Processos();
+    //std::cout << conjuntoProcessos->programas.at(230).getPID();
+
+    for(int i=0; i < conjuntoProcessos->programas.size(); i++){
+        QList<QStandardItem *> currentProcessList;
+        currentProcess->setPID(conjuntoProcessos->programas.at(i).getPID());
+        currentProcess->setCPU_USAGE(conjuntoProcessos->programas.at(i).getCPU_USAGE());
+
+        currentProcessList.append(new QStandardItem(currentProcess->getPID()));
+        currentProcessList.append(new QStandardItem(currentProcess->getCPU_USAGE()));
+        currentProcessList.append(new QStandardItem(to_string(42));
+
+
+
+        model->appendRow(currentProcessList);
+        ui->tableView->setModel(model);
+
+    }
+
 
 
 
 
     ui->tableView->setModel(model);
-    std::cout << processTable->verticalHeader();
+    //std::cout << processTable->verticalHeader();
 
 
 }

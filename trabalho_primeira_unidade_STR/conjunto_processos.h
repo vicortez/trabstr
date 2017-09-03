@@ -14,6 +14,7 @@ private:
 
 public:
     vector<Processo> programas;
+
     Conjunto_Processos();
     void atualizarDados();
     void lerArquivo();
