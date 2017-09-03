@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTableView>
+
+
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +20,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
 };
 
 #endif // MAINWINDOW_H
