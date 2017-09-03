@@ -39,11 +39,11 @@ public:
     QSpinBox *spinBox;
     QPushButton *pushButton_4;
     QTableView *tableView;
-    QLineEdit *lineEdit;
+    QLineEdit *pidLineEdit;
     QLabel *label;
     QLabel *label_2;
     QGraphicsView *graphicsView;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QFormLayout *formLayout;
     QLabel *label_3;
     QPushButton *pushButton_5;
@@ -77,9 +77,9 @@ public:
         tableView = new QTableView(centralWidget);
         tableView->setObjectName(QStringLiteral("tableView"));
         tableView->setGeometry(QRect(20, 160, 541, 271));
-        lineEdit = new QLineEdit(centralWidget);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(530, 80, 113, 27));
+        pidLineEdit = new QLineEdit(centralWidget);
+        pidLineEdit->setObjectName(QStringLiteral("pidLineEdit"));
+        pidLineEdit->setGeometry(QRect(530, 80, 113, 27));
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(570, 60, 31, 17));
@@ -89,25 +89,25 @@ public:
         graphicsView = new QGraphicsView(centralWidget);
         graphicsView->setObjectName(QStringLiteral("graphicsView"));
         graphicsView->setGeometry(QRect(20, 10, 471, 131));
-        widget = new QWidget(centralWidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(600, 260, 171, 85));
-        formLayout = new QFormLayout(widget);
+        layoutWidget = new QWidget(centralWidget);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(600, 260, 171, 85));
+        formLayout = new QFormLayout(layoutWidget);
         formLayout->setSpacing(6);
         formLayout->setContentsMargins(11, 11, 11, 11);
         formLayout->setObjectName(QStringLiteral("formLayout"));
         formLayout->setContentsMargins(0, 0, 0, 0);
-        label_3 = new QLabel(widget);
+        label_3 = new QLabel(layoutWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label_3);
 
-        pushButton_5 = new QPushButton(widget);
+        pushButton_5 = new QPushButton(layoutWidget);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
 
         formLayout->setWidget(2, QFormLayout::LabelRole, pushButton_5);
 
-        lineEdit_2 = new QLineEdit(widget);
+        lineEdit_2 = new QLineEdit(layoutWidget);
         lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
 
         formLayout->setWidget(1, QFormLayout::SpanningRole, lineEdit_2);

@@ -19,6 +19,9 @@ public:
     void atualizarDados();
     void lerArquivo();
     static void receiveFunction(Conjunto_Processos *pointer);
+    void kill_process(int);
+    void pause_process(int);
+    void continue_process(int);
 };
 
 #endif // CONJUNTO_PROCESSOS_H

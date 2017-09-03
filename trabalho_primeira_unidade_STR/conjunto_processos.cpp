@@ -8,6 +8,10 @@
 #include <vector>
 #include <thread>
 #include <QThread>
+#include <signal.h> // definição dos sinais de interrupções
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h> // system()
 
 using namespace std;
 
@@ -84,11 +88,29 @@ void Conjunto_Processos::lerArquivo()
          }
         //Fecha arquivo de texto
         meusProcessos.close();
-        QThread::sleep(2);
+        //QThread::sleep(2);
     }
 
 void Conjunto_Processos::receiveFunction(Conjunto_Processos *pointer)
 {
     pointer->lerArquivo();
+}
+
+void Conjunto_Processos::kill_process(int pidVitima){
+    printf("matando processo %d.\n", pidVitima);
+    kill(pidVitima, SIGKILL);
+
+}
+
+void Conjunto_Processos::pause_process(int pidVitima)
+{
+    printf("pausando processo %d.\n", pidVitima);
+    kill(pidVitima, SIGSTOP);
+}
+
+void Conjunto_Processos::continue_process(int pidVitima)
+{
+    printf("continuando processo %d.\n", pidVitima);
+    kill(pidVitima, SIGCONT);
 }
 
