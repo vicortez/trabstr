@@ -63,6 +63,16 @@ void Processo::setComando(const string &value)
     comando = value;
 }
 
+string Processo::getEstado() const
+{
+    return estado;
+}
+
+void Processo::setEstado(const string &value)
+{
+    estado = value;
+}
+
 Processo::Processo(int _PID, string _user, string _comando, float _CPU_USAGE, float _mem)
 {
     PID = _PID;

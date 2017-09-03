@@ -3,8 +3,13 @@
 #include "iostream"
 #include "conjunto_processos.h"
 #include <string>
+#include <thread>
+#include <QThread>
 
 #include <QStandardItem>
+
+using namespace std;
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -19,42 +24,27 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setWindowTitle("BetterHtop");
 
-    model->setColumnCount(3);
-    model->setHorizontalHeaderItem(0, new QStandardItem(QString("Column1 Header")));
-    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Column2 Header")));
-    model->setHorizontalHeaderItem(2, new QStandardItem(QString("Column3 Header")));
+    model->setColumnCount(4);
+    model->setHorizontalHeaderItem(0, new QStandardItem(QString("PID")));
+    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Uso de CPU")));
+    model->setHorizontalHeaderItem(2, new QStandardItem(QString("Status")));
+    model->setHorizontalHeaderItem(3, new QStandardItem(QString("Comando")));
+
 
     //processTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-    //currentProcessList.append(new QStandardItem("Column 1 Text"));
-    //currentProcessList.append(new QStandardItem("Column 2 Text"));
-   //currentProcessList.append(new QStandardItem("Column 3 Text"));
-
     //model->appendRow(currentProcessList);
-    Conjunto_Processos* conjuntoProcessos = new Conjunto_Processos();
-    //std::cout << conjuntoProcessos->programas.at(230).getPID();
 
-    for(int i=0; i < conjuntoProcessos->programas.size(); i++){
-        QList<QStandardItem *> currentProcessList;
-        currentProcess->setPID(conjuntoProcessos->programas.at(i).getPID());
-        currentProcess->setCPU_USAGE(conjuntoProcessos->programas.at(i).getCPU_USAGE());
 
-        currentProcessList.append(new QStandardItem(currentProcess->getPID()));
-        currentProcessList.append(new QStandardItem(currentProcess->getCPU_USAGE()));
-        currentProcessList.append(new QStandardItem(to_string(42));
+    //thread t1(&MainWindow::print_table);
+    //t1.join();
+
+    //QThread* t1(&MainWindow::print_table, pointer);
+    //t1->start();
+    print_table();
 
 
 
-        model->appendRow(currentProcessList);
-        ui->tableView->setModel(model);
-
-    }
-
-
-
-
-
-    ui->tableView->setModel(model);
+    //ui->tableView->setModel(model);
     //std::cout << processTable->verticalHeader();
 
 
@@ -63,6 +53,41 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::print_table(){
+    Processo* currentProcess = new Processo();
+    Conjunto_Processos* conjuntoProcessos = new Conjunto_Processos();
+    QStandardItemModel* model = new QStandardItemModel(this);
+    QTableView* processTable = ui->tableView;
+
+    setWindowTitle("BetterHtop");
+
+    model->setColumnCount(4);
+    model->setHorizontalHeaderItem(0, new QStandardItem(QString("PID")));
+    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Uso de CPU")));
+    model->setHorizontalHeaderItem(2, new QStandardItem(QString("Status")));
+    model->setHorizontalHeaderItem(3, new QStandardItem(QString("Comando")));
+
+
+    for(int i=0; i < conjuntoProcessos->programas.size(); i++){
+        QList<QStandardItem *> currentProcessList;
+        currentProcess->setPID(conjuntoProcessos->programas.at(i).getPID());
+        currentProcess->setCPU_USAGE(conjuntoProcessos->programas.at(i).getCPU_USAGE());
+        currentProcess->setEstado(conjuntoProcessos->programas.at(i).getEstado());
+        currentProcess->setComando(conjuntoProcessos->programas.at(i).getComando());
+
+        currentProcessList.append(new QStandardItem(QString::fromStdString(to_string(currentProcess->getPID()))));
+        currentProcessList.append(new QStandardItem(QString::fromStdString(to_string(currentProcess->getCPU_USAGE()))));
+        currentProcessList.append(new QStandardItem(QString::fromStdString(currentProcess->getEstado())));
+        currentProcessList.append(new QStandardItem(QString::fromStdString(currentProcess->getComando())));
+
+
+
+        model->appendRow(currentProcessList);
+        ui->tableView->setModel(model);
+
+    }
 }
 
 //======================================

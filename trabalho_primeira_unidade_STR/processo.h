@@ -12,6 +12,7 @@ private:
     string comando;
     float CPU_USAGE, mem;
     int CPU_MASK;
+    string estado;
 public:
     Processo(int _PID, string _user, string _comando, float _CPU_USAGE, float _mem);
     Processo();
@@ -30,6 +31,8 @@ public:
     void setCPU_MASK(int value);
     string getComando() const;
     void setComando(const string &value);
+    string getEstado() const;
+    void setEstado(const string &value);
 };
 
 #endif // PROCESSO_H

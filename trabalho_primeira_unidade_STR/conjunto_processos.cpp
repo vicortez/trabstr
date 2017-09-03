@@ -64,6 +64,11 @@ void Conjunto_Processos::lerArquivo()
                     i++;
                     continue;
                 }
+                else if(i == 7){
+                    my_rank.setEstado(buffer);
+                    i++;
+                    continue;
+                }
                 else if(i == 10){
                     my_rank.setComando(buffer);
                     i++;
