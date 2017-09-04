@@ -2,12 +2,15 @@
 #include "ui_mainwindow.h"
 #include "iostream"
 #include "conjunto_processos.h"
+#include "conjunto_processadores.h"
 #include <string>
 #include <thread>
 #include <QThread>
 #include <QTimer>
-
+#include <QSpinBox>
 #include <QStandardItem>
+#include <sched.h>
+#include <QDebug>
 
 using namespace std;
 
@@ -21,6 +24,10 @@ MainWindow::MainWindow(QWidget *parent) :
     //QPushButton* killbutton = ui->pushButton;
     QLineEdit* pidLineEdit = ui->pidLineEdit;
     //Conjunto_Processos* conjuntoProcessos = new Conjunto_Processos();
+    Conjunto_Processadores* conjuntoProcessadores = new Conjunto_Processadores();
+    //QSpinBox* spinbox = ui->spinBox;
+    //spinbox->setMaximum(conjuntoProcessadores->getTamanho());
+    //connect(QMainWindow.isEnabled())
 
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(print_table()));
@@ -33,6 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     setWindowTitle("BetterHtop");
+    ui->spinBox->setMaximum(conjuntoProcessadores->getTamanho()-1);
 
     //processTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     //model->appendRow(currentProcessList);
@@ -124,4 +132,27 @@ void MainWindow::on_pushButton_3_clicked()
     Conjunto_Processos* conjuntoProcessos = new Conjunto_Processos();
 
     conjuntoProcessos->continue_process(pidLineEdit->text().toInt());
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    pid_t pid;
+    cpu_set_t mask;
+    int mascara = 0;
+    CPU_ZERO(&mask);
+    QSpinBox* spinbox = ui->spinBox;
+    int cpu = spinbox->value();
+
+    QLineEdit* pidLineEdit = ui->pidLineEdit;
+
+    pid = (pid_t)pidLineEdit->text().toInt();
+    if(cpu != 0){
+        mascara = 1;
+        mascara = mascara << (cpu-1);
+    }
+    CPU_SET(mascara, &mask);
+    sched_setaffinity(pid, sizeof(mask), &mask);
+
+
+    //qDebug() << pid;
 }
