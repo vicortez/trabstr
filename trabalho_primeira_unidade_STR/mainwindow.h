@@ -28,6 +28,10 @@ private slots:
 
     void print_table();
 
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
+
 private:
     Ui::MainWindow *ui;
 
