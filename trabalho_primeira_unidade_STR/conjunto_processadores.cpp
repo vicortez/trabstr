@@ -1,8 +1,7 @@
 #include "conjunto_processadores.h"
 
 using namespace std;
-
-int Conjunto_Processadores::getTamanho() const
+int Conjunto_Processadores::getTamanho()
 {
     return tamanho;
 }
@@ -50,6 +49,8 @@ void Conjunto_Processadores::atualiza_arquivo()
 //Fazer uma função que atualize o arquivo /proc/stat independente da leitura dele
 Conjunto_Processadores::Conjunto_Processadores()
 {
+    tamanho = sysconf(_SC_NPROCESSORS_ONLN);
+    /*
     thread atualiza_texto();
     Conjunto_Processadores *pointer = this;
     for(int i = 0; i < tamanho; i++){
@@ -57,6 +58,7 @@ Conjunto_Processadores::Conjunto_Processadores()
         thread atualiza(&receiveFunction, pointer, conj_procs.at(i), i);
         atualiza.join();
     }
+    */
 }
 //Atualiza os dados do processador a ser analisado o tempo
 void Conjunto_Processadores::configProcessadores(Processador cpu, int indice)

@@ -14,12 +14,12 @@ using namespace std;
 class Conjunto_Processadores
 {
 private:
-    int tamanho = sysconf(_SC_NPROCESSORS_ONLN);
+    int tamanho;
 public:
     vector<Processador> conj_procs;
     Conjunto_Processadores();
     static void configProcessadores(Processador cpu, int indice);
-    int getTamanho() const;
+    int getTamanho();
     static void usoCPU(Processador proc, int indice);
     void usoGeral_CPU();
     static void receiveFunction(Conjunto_Processadores *pointer, Processador p, int indice);

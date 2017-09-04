@@ -2,12 +2,15 @@
 #include "ui_mainwindow.h"
 #include "iostream"
 #include "conjunto_processos.h"
+#include "conjunto_processadores.h"
 #include <string>
 #include <thread>
 #include <QThread>
 #include <QTimer>
-
+#include <QSpinBox>
 #include <QStandardItem>
+#include <sched.h>
+#include <QDebug>
 
 using namespace std;
 
@@ -22,6 +25,10 @@ MainWindow::MainWindow(QWidget *parent) :
     QTableView* processTable = ui->tableView;
     QLineEdit* pidLineEdit = ui->pidLineEdit;
     //Conjunto_Processos* conjuntoProcessos = new Conjunto_Processos();
+    Conjunto_Processadores* conjuntoProcessadores = new Conjunto_Processadores();
+    //QSpinBox* spinbox = ui->spinBox;
+    //spinbox->setMaximum(conjuntoProcessadores->getTamanho());
+    //connect(QMainWindow.isEnabled())
 
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(print_table()));
@@ -30,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     setWindowTitle("BetterHtop");
+    ui->spinBox->setMaximum(conjuntoProcessadores->getTamanho()-1);
 
     print_table();
 }
@@ -104,21 +112,32 @@ void MainWindow::on_pushButton_3_clicked()
     conjuntoProcessos->continue_process(pidLineEdit->text().toInt());
 }
 
+void MainWindow::on_pushButton_4_clicked()
+{
+    pid_t pid;
+    cpu_set_t mask;
+    int mascara = 0;
+    CPU_ZERO(&mask);
+    QSpinBox* spinbox = ui->spinBox;
+    int cpu = spinbox->value();
+
+    QLineEdit* pidLineEdit = ui->pidLineEdit;
+
+    pid = (pid_t)pidLineEdit->text().toInt();
+    if(cpu != 0){
+        mascara = 1;
+        mascara = mascara << (cpu-1);
+    }
+    CPU_SET(mascara, &mask);
+    sched_setaffinity(pid, sizeof(mask), &mask);
+
+
+    //qDebug() << pid;
+}
+
 void MainWindow::on_pushButton_5_clicked()
 {
     QLineEdit* filterLineEdit = ui->lineEdit_2;
     filter = filterLineEdit->text().toStdString();
 }
 
-//======================================
-//junk code
-//TABLE CODE EXAMPLES
-// QStandardItemModel *model = new QStandardItemModel(2,3,this); //2 Rows and 3 Columns
-//QStandardItem *firstRow = new QStandardItem(QString("ColumnValue"));
-//model->setItem(0,0,firstRow);
-//processTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-//model->appendRow(currentProcessList);
-//QList<QStandardItem *> currentProcessList;
-//QStandardItemModel* model = new QStandardItemModel(this);
-//ui->tableView->setModel(model);
-//std::cout << processTable->verticalHeader();
