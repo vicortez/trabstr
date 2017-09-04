@@ -14,6 +14,8 @@
 
 using namespace std;
 
+string filter="";
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,7 +23,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     Processo* currentProcess = new Processo();
     QTableView* processTable = ui->tableView;
-    //QPushButton* killbutton = ui->pushButton;
     QLineEdit* pidLineEdit = ui->pidLineEdit;
     //Conjunto_Processos* conjuntoProcessos = new Conjunto_Processos();
     Conjunto_Processadores* conjuntoProcessadores = new Conjunto_Processadores();
@@ -33,31 +34,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(print_table()));
     timer->start(1000);
 
-
-    //QList<QStandardItem *> currentProcessList;
-    //QStandardItemModel* model = new QStandardItemModel(this);
-
     ui->setupUi(this);
 
     setWindowTitle("BetterHtop");
     ui->spinBox->setMaximum(conjuntoProcessadores->getTamanho()-1);
 
-    //processTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    //model->appendRow(currentProcessList);
-
-
-    //thread t1(&MainWindow::print_table);
-    //t1.join();
-
-    //QThread* t1(&MainWindow::print_table, pointer);
-    //t1->start();
     print_table();
-
-
-    //ui->tableView->setModel(model);
-    //std::cout << processTable->verticalHeader();
-
-
 }
 
 MainWindow::~MainWindow()
@@ -65,11 +47,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//executes every second, iterates trough all procesess and prints them on the table if the
+//filter field is contained in the command field of each process
 void MainWindow::print_table(){
     Processo* currentProcess = new Processo();
     Conjunto_Processos* conjuntoProcessos = new Conjunto_Processos();
     QStandardItemModel* model = new QStandardItemModel(this);
     QTableView* processTable = ui->tableView;
+    QLineEdit* filterLineEdit = ui->lineEdit_2;
 
     setWindowTitle("BetterHtop");
 
@@ -83,31 +68,24 @@ void MainWindow::print_table(){
 
 
     for(int i=0; i < conjuntoProcessos->programas.size(); i++){
-        QList<QStandardItem *> currentProcessList;
-        currentProcess->setPID(conjuntoProcessos->programas.at(i).getPID());
-        currentProcess->setCPU_USAGE(conjuntoProcessos->programas.at(i).getCPU_USAGE());
-        currentProcess->setEstado(conjuntoProcessos->programas.at(i).getEstado());
-        currentProcess->setComando(conjuntoProcessos->programas.at(i).getComando());
+        if(conjuntoProcessos->programas.at(i).getComando().find(filter) != std::string::npos){
+            QList<QStandardItem *> currentProcessList;
 
-        currentProcessList.append(new QStandardItem(QString::fromStdString(to_string(currentProcess->getPID()))));
-        currentProcessList.append(new QStandardItem(QString::fromStdString(to_string(currentProcess->getCPU_USAGE()))));
-        currentProcessList.append(new QStandardItem(QString::fromStdString(currentProcess->getEstado())));
-        currentProcessList.append(new QStandardItem(QString::fromStdString(currentProcess->getComando())));
+            currentProcess->setPID(conjuntoProcessos->programas.at(i).getPID());
+            currentProcess->setCPU_USAGE(conjuntoProcessos->programas.at(i).getCPU_USAGE());
+            currentProcess->setEstado(conjuntoProcessos->programas.at(i).getEstado());
+            currentProcess->setComando(conjuntoProcessos->programas.at(i).getComando());
 
+            currentProcessList.append(new QStandardItem(QString::fromStdString(to_string(currentProcess->getPID()))));
+            currentProcessList.append(new QStandardItem(QString::fromStdString(to_string(currentProcess->getCPU_USAGE()))));
+            currentProcessList.append(new QStandardItem(QString::fromStdString(currentProcess->getEstado())));
+            currentProcessList.append(new QStandardItem(QString::fromStdString(currentProcess->getComando())));
 
-
-        model->appendRow(currentProcessList);
-        ui->tableView->setModel(model);
-
+            model->appendRow(currentProcessList);
+        }
     }
+    ui->tableView->setModel(model);
 }
-
-//======================================
-//junk code
-//TABLE CODE EXAMPLES
-// QStandardItemModel *model = new QStandardItemModel(2,3,this); //2 Rows and 3 Columns
-//QStandardItem *firstRow = new QStandardItem(QString("ColumnValue"));
-//model->setItem(0,0,firstRow);
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -156,3 +134,10 @@ void MainWindow::on_pushButton_4_clicked()
 
     //qDebug() << pid;
 }
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    QLineEdit* filterLineEdit = ui->lineEdit_2;
+    filter = filterLineEdit->text().toStdString();
+}
+
